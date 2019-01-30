@@ -1,11 +1,11 @@
 # Device BME680 Service
 
 ## About
-The EdgeX Device BME680 Service is developed to communicate BME680 sensor connected to the I2C bus in an EdgeX deployment
+The EdgeX Device BME680 Service is developed to communicate to BME680 sensor connected to the I2C bus in an EdgeX deployment
 
 ## Supported Boards:
-NXP ls1012a frwy - ARM64 bit
-Raspberry Pi 3B(+) - ARM64 bit
+* NXP ls1012a frwy - ARM64 bit
+* Raspberry Pi 3B(+) - ARM64 bit
 
 ## Dependencies:
 
