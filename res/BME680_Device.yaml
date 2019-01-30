@@ -1,0 +1,75 @@
+name: "BME680_Device"
+manufacturer: "BOSCH"
+model: "BME680"
+labels:
+- "Temperature, Humidity, Pressure, Gas"
+description: "Digital 4-in-1 sensor with gas, humidity, pressure and temperature measurement"
+
+deviceResources:
+- name: Temperature
+  description: "Temperature reading"
+  properties:
+    value:
+      { type: "Float32", readWrite: "R", minimum: "-40", maximum: "85", defaultValue: "20" }
+    units:
+      { type: "String", readWrite: "R", defaultValue: "C" }
+- name: Humidity
+  description: "Humidity reading"
+  properties:
+    value:
+      { type: "Float32", readWrite: "R", minimum: "0", maximum: "100", defaultValue: "40" }
+    units:
+      { type: "String", readWrite: "R", defaultValue: "%rH" }
+- name: Pressure
+  description: "Pressure reading"
+  properties:
+    value:
+      { type: "Float32", readWrite: "R", minimum: "300", maximum: "1100", defaultValue: "10013.25" }
+    units:
+      { type: "String", readWrite: "R", defaultValue: "hPa" }
+
+resources:
+- name: Get_Temperature
+  get:
+  - { operation: "get", object: "Temperature", property: "value", parameter: "Temperature" }
+- name: Get_Humidity
+  get:
+  - { operation: "get", object: "Humidity", property: "value", parameter: "Humidity" }
+- name: Get_Pressure
+  get:
+  - { operation: "get", object: "Pressure", property: "value", parameter: "Pressure" }
+
+commands:
+- name: Get_Temperature
+  get:
+    path: "/api/v1/device/{deviceId}/Get_Temperature"
+    responses:
+    - code: "200"
+      description: "valid and accepted"
+      expectedValues: ["Temperature"]
+    - code: "503"
+      description: "service unavailable"
+      expectedValues: []
+
+- name: Get_Humidity
+  get:
+    path: "/api/v1/device/{deviceId}/Get_Humidity"
+    responses:
+    - code: "200"
+      description: "valid and accepted"
+      expectedValues: ["Humidity"]
+    - code: "503"
+      description: "service unavailable"
+      expectedValues: []
+
+- name: Get_Pressure
+  get:
+    path: "/api/v1/device/{deviceId}/Get_Pressure"
+    responses:
+    - code: "200"
+      description: "valid and accepted"
+      expectedValues: ["Pressure"]
+    - code: "503"
+      description: "service unavailable"
+      expectedValues: []
+
